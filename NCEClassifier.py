@@ -388,21 +388,10 @@ def NCE_Tuning(X_train, y_train, Relevance,
                                 exp_results['Hom_type'] = Hom_type_counter
                                 exp_results['Dist_type'] = Dist_type_counter
                                 exp_results['Net_type'] = Net_type_counter
-                                #if len(My_results)==0:
-                                #    My_results = exp_results
-                                #else:
-                                #    My_results = pd.concat([My_results,exp_results], ignore_index = True)
                                 My_results = pd.concat([My_results,exp_results], ignore_index = True)
         else:
             # do not search the grid, instead find promising values for each parameter
             # Determine WITHOUT GRID SEARCH
-            for Dist_type_counter in ['L1','L2']:
-                pred, pred_class, exp_results = NCE(X_train,y_train, Agg_statistic, Att_type, \
-                                                    Hom_type, Dist_type_counter,  \
-                                                    X0_Center, X0_Size, X0_Std, X0_Mad, X0_CoV, \
-                                                    X1_Center, X1_Size, X1_Std, X1_Mad, X1_CoV, \
-                                                    Importance, pred_train_original, True, 0, Net_type)
-                My_results = pd.concat([My_results,exp_results], ignore_index = True)
             for Hom_type_counter in ['1','mad','std','var','cov']:
                 pred, pred_class, exp_results = NCE(X_train,y_train, Agg_statistic, Att_type, \
                                                     Hom_type_counter, Dist_type,  \
